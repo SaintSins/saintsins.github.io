@@ -12,6 +12,23 @@
     <div class="navbar-center">
       <a class="btn btn-ghost normal-case text-xl" href="/"></a>
     </div>
-    <div class="navbar-end"></div>
+    <div class="navbar-end">
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost btn-circle" aria-label="Theme Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 17a4 4 0 0 1-8 0V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2Z"></path>
+            <path d="M16.7 13H19a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7"></path>
+            <path d="M7 17h.01"></path>
+            <path d="m11 8 2.3-2.3a2.83 2.83 0 1 1 4 4L13 13"></path>
+          </svg>
+        </label>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-40 mt-4">
+          <li><button class="theme-btn" data-theme-value="dracula">Dracula</button></li>
+          <li><button class="theme-btn" data-theme-value="lofi">Lofi</button></li>
+          <li><button class="theme-btn" data-theme-value="synthwave">Synthwave</button></li>
+          <li><button class="theme-btn" data-theme-value="nord">Nord</button></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

@@ -18,13 +18,21 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="lofi">
+<html lang="en">
   <head>
     <BaseHead title={title} description={description} image={image} , ogType={ogType} />
     {TRANSITION_API && <ViewTransitions />}
     <script is:inline>
-      const savedTheme = localStorage.getItem("theme") || "dracula";
-      document.documentElement.setAttribute("data-theme", savedTheme);
+      // 1. Initial Load: Apply theme instantly when the site first opens
+      const theme = localStorage.getItem("theme") || "dracula";
+      document.documentElement.setAttribute("data-theme", theme);
+
+      // 2. Page Swap: Intercept the new page in memory and apply the theme BEFORE it renders
+      document.addEventListener('astro:before-swap', (e) => {
+        const savedTheme = localStorage.getItem("theme") || "dracula";
+        // We apply it to e.newDocument (the incoming HTML), not the current document!
+        e.newDocument.documentElement.setAttribute("data-theme", savedTheme);
+      });
     </script>
   </head>
   <body>
