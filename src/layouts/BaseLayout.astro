@@ -22,6 +22,10 @@ const {
   <head>
     <BaseHead title={title} description={description} image={image} , ogType={ogType} />
     {TRANSITION_API && <ViewTransitions />}
+    <script is:inline>
+      const savedTheme = localStorage.getItem("theme") || "dracula";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
   </head>
   <body>
     <div class="bg-base-100 drawer lg:drawer-open">

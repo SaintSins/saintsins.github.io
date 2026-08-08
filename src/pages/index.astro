@@ -10,6 +10,30 @@ const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
+
+  <!-- TOP RIGHT THEME DROPDOWN -->
+  <div class="flex justify-end w-full mb-4">
+    <div class="dropdown dropdown-end">
+      <!-- Icon Button (Paint Palette) -->
+      <label tabindex="0" class="btn btn-ghost btn-circle" aria-label="Theme Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 17a4 4 0 0 1-8 0V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2Z"></path>
+          <path d="M16.7 13H19a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7"></path>
+          <path d="M7 17h.01"></path>
+          <path d="m11 8 2.3-2.3a2.83 2.83 0 1 1 4 4L13 13"></path>
+        </svg>
+      </label>
+      
+      <!-- Dropdown Menu -->
+      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-40 z-50">
+        <li><button class="theme-btn" data-theme-value="dracula">Dracula</button></li>
+        <li><button class="theme-btn" data-theme-value="lofi">Lofi</button></li>
+        <li><button class="theme-btn" data-theme-value="synthwave">Synthwave</button></li>
+        <li><button class="theme-btn" data-theme-value="nord">Nord</button></li>
+      </ul>
+    </div>
+  </div>
+
   <div class="pb-12 mt-5">
     <div class="text-xl py-1">Hey there 👋</div>
     <div class="text-5xl font-bold">I'm Sayyed Mohsin Ali</div>
@@ -39,6 +63,33 @@ const last_posts = posts.slice(0, 3);
     desc="A self-correcting, tool-enabled AI Agent framework built using Gemini that is designed to navigate files, write Python code, and debug in real-time."
     url="https://github.com/SaintSins/Agentic-Ai-Bootdev-Practice"
   />
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      // Find all the buttons inside our dropdown
+      const themeBtns = document.querySelectorAll('.theme-btn');
+      
+      themeBtns.forEach(btn => {
+        btn.addEventListener('click', (e: Event) => {
+          // Tell TypeScript this is definitely a button
+          const target = e.currentTarget as HTMLButtonElement;
+          const newTheme = target.getAttribute('data-theme-value');
+          
+          if (newTheme) {
+            // Apply the theme and save it to memory
+            document.documentElement.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+            
+            // Automatically close the dropdown menu
+            const dropdownElem = document.activeElement as HTMLElement;
+            if (dropdownElem) {
+                dropdownElem.blur();
+            }
+          }
+        });
+      });
+    });
+  </script>
 
   <!-- <div> 
     <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
